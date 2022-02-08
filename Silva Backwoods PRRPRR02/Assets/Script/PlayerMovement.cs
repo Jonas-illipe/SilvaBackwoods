@@ -4,42 +4,47 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public float jumpForce;
+    public float moveSpeed;
+
     private Rigidbody2D rb;
 
-    public float moveSpeed;
-    private float dirx;
-    private float diry;
+    public Transform groundCheckPoint1, groundCheckPoint2;
+    public LayerMask whatIsGround;
+    private bool isGrounded;
+
+    public Animator anim;
+    public SpriteRenderer playerSR;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        dirx = Input.GetAxisRaw("Horizontal");
-        //diry = Input.GetAxisRaw("Space");
-
-
-        //if (Input.GetKey("Space"))
-        {
-            
-        }
-
-    }
 
     private void FixedUpdate()
     {
-        Vector2 xmovement = new Vector2(dirx * moveSpeed, rb.velocity.y);
+        //Move horizontally
+        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, rb.velocity.y);
 
-        rb.velocity = xmovement;
+        //Check if player is on the ground
+        //isGrounded = Physics2D.OverlapCircle(groundCheckPoint1.position, 1f, whatIsGround) || Physics2D.OverlapCircle(groundCheckPoint2.position, 1f, whatIsGround);
 
-        //Vector2 ymovement = new Vector2(rb.velocity.x, diry * moveSpeed);
+        //Jump upwards
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
 
-        //rb.velocity = ymovement;
-
-        
+        //Flip the player
+        if (Input.GetAxisRaw("Horizontal") < 0)
+        {
+            playerSR.flipX = false;
+        }
+        else if (Input.GetAxisRaw("Horizontal") < 0)
+        {
+            playerSR.flipX = true;
+        }
     }
 
 }
