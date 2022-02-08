@@ -19,10 +19,10 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         dirx = Input.GetAxisRaw("Horizontal");
-        diry = Input.GetAxisRaw("Space");
+        //diry = Input.GetAxisRaw("Space");
 
 
-        if (Input.GetKey("Space"))
+        //if (Input.GetKey("Space"))
         {
             
         }
@@ -35,9 +35,9 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity = xmovement;
 
-        Vector2 ymovement = new Vector2(rb.velocity.x, diry * moveSpeed);
+        //Vector2 ymovement = new Vector2(rb.velocity.x, diry * moveSpeed);
 
-        rb.velocity = ymovement;
+        //rb.velocity = ymovement;
 
         
     }
