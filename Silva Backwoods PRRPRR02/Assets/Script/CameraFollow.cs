@@ -14,8 +14,6 @@ public class CameraFollow : MonoBehaviour
         Vector3 cameraPosition = player.position + offset;
         Vector3 smoothCameraPosition = Vector3.Lerp(transform.position, cameraPosition, smoothSpeed);
         transform.position = smoothCameraPosition;
-
-        //fastnar i spelet när man går runt!! //Brackeys
     }
 
 }
