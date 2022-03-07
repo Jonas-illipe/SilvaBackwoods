@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask whatIsGround;
     private bool isGrounded;
 
-
+    public LayerMask whatIsWall;
     public Transform wallGrabPoint;
     private bool canGrab, isGrabbing;
     private float gravityStore;
@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //handle wall jumping
-        canGrab = Physics2D.OverlapCircle(wallGrabPoint.position, 2f, whatIsGround);
+        canGrab = Physics2D.OverlapCircle(wallGrabPoint.position, 2f, whatIsWall);
 
         isGrabbing = false;
         if(canGrab && !isGrounded)
