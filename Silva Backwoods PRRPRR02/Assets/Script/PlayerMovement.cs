@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, rb.velocity.y);
 
         //Check if player is on the ground
-        isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, checkPointRadius, whatIsGround) || Physics2D.OverlapCircle(wallGrabPoint.position, checkPointRadius, whatIsGround);
+        isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, checkPointRadius, whatIsGround); //|| Physics2D.OverlapCircle(wallGrabPoint.position, checkPointRadius, whatIsGround);
 
         //Jump upwards
         if (Input.GetButtonDown("Jump") && isGrounded)
