@@ -6,17 +6,18 @@ public class PlayerMovement : MonoBehaviour
 {
     public float jumpForce;
     public float moveSpeed;
-    public float checkPointRadius;
 
     private Rigidbody2D rb;
 
     public Transform groundCheckPoint;
+    public float groundPointRadius;
     public LayerMask whatIsGround;
     private bool isGrounded;
 
     public LayerMask whatIsWall;
     public Transform wallGrabPoint;
     private bool canGrab, isGrabbing;
+    public float grabRange;
     private float gravityStore;
     //public SpriteRenderer playerSR;
 
@@ -36,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, rb.velocity.y);
 
         //Check if player is on the ground
-        isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, checkPointRadius, whatIsGround); //|| Physics2D.OverlapCircle(wallGrabPoint.position, checkPointRadius, whatIsGround);
+        isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundPointRadius, whatIsGround);
 
         //Jump upwards
         if (Input.GetButtonDown("Jump") && isGrounded)
@@ -50,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
             //playerSR.flipX = false;
             
             Vector3 scaler = transform.localScale;
-            scaler.x = 1f;
+            scaler.x = -1f;
             transform.localScale = scaler;
             
         }
@@ -59,13 +60,13 @@ public class PlayerMovement : MonoBehaviour
             //playerSR.flipX = true;
            
             Vector3 scaler = transform.localScale;
-            scaler.x = -1f;
+            scaler.x = 1f;
             transform.localScale = scaler;
            
         }
 
         //handle wall jumping
-        canGrab = Physics2D.OverlapCircle(wallGrabPoint.position, 2f, whatIsWall);
+        canGrab = Physics2D.OverlapCircle(wallGrabPoint.position, grabRange, whatIsWall);
 
         isGrabbing = false;
         if(canGrab && !isGrounded)
@@ -87,6 +88,13 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.gravityScale = gravityStore;
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(wallGrabPoint.position, grabRange);
+        Gizmos.DrawWireSphere(groundCheckPoint.position, groundPointRadius);
     }
 
 }
