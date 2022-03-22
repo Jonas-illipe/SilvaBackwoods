@@ -71,7 +71,6 @@ public class PlayerMovement : MonoBehaviour
         isGrabbing = false;
         if(canGrab && !isGrounded)
         {
-            Debug.Log("äpple");
             if ((transform.localScale.x == 1f && Input.GetAxisRaw("Horizontal") > 0) || (transform.localScale.x == -1f && Input.GetAxisRaw("Horizontal") < 0))
             {
                 isGrabbing = true;
