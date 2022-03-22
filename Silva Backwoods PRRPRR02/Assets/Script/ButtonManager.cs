@@ -37,6 +37,8 @@ public class ButtonManager : MonoBehaviour
 
     public void MainButton()
     {
+        Time.timeScale = 1f;
+        gameIsPaused = false;
         SceneManager.LoadScene("Main Menu");
     }
 }
