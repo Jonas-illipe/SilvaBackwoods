@@ -20,6 +20,7 @@ public class EnemyManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
     }
@@ -36,11 +37,16 @@ public class EnemyManager : MonoBehaviour
 
         if (playerDetected == true)
         {
-            followPlayer();
+            FollowPlayer();
         }
     }
 
-    void followPlayer()
+    void FollowPlayer()
+    {
+
+    }
+
+    void MeleeAttack()
     {
 
     }
