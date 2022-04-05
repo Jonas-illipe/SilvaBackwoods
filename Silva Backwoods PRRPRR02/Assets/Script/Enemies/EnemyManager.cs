@@ -13,6 +13,7 @@ public class EnemyManager : MonoBehaviour
 
     protected GameObject player;
     public float locateRange;
+    public Transform locatePoint;
     public LayerMask playerLayer;
     protected bool playerDetected = false;
     
@@ -64,5 +65,11 @@ public class EnemyManager : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(locatePoint.position, locateRange);
     }
 }
