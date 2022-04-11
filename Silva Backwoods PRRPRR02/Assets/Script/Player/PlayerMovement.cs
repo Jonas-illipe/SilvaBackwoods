@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundPointRadius, whatIsGround);
 
         //Jump upwards
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded || isGrabbing)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
