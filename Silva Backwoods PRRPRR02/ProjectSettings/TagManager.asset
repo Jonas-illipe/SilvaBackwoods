@@ -52,3 +52,15 @@ TagManager:
   - name: Creatures
     uniqueID: 935495461
     locked: 0
+  - name: Foreground
+    uniqueID: 2752292253
+    locked: 0
+  - name: Background 1
+    uniqueID: 2503451271
+    locked: 0
+  - name: Background 2
+    uniqueID: 42056951
+    locked: 0
+  - name: Background 3
+    uniqueID: 860512811
+    locked: 0
