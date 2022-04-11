@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class WolfEnemy : EnemyManager
 {
-    public Transform MeleeAreaPoint;
 
     // Start is called before the first frame update
     void Start()
