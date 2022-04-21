@@ -43,24 +43,30 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Tiles
-    uniqueID: 1069020647
+  - name: Background 4
+    uniqueID: 2585300235
     locked: 0
-  - name: Objects
-    uniqueID: 376713139
-    locked: 0
-  - name: Creatures
-    uniqueID: 935495461
-    locked: 0
-  - name: Foreground
-    uniqueID: 2752292253
-    locked: 0
-  - name: Background 1
-    uniqueID: 2503451271
+  - name: Background 3
+    uniqueID: 860512811
     locked: 0
   - name: Background 2
     uniqueID: 42056951
     locked: 0
-  - name: Background 3
-    uniqueID: 860512811
+  - name: Background 1
+    uniqueID: 2503451271
+    locked: 0
+  - name: Background Objects
+    uniqueID: 1241697829
+    locked: 0
+  - name: Tiles
+    uniqueID: 1069020647
+    locked: 0
+  - name: Creatures
+    uniqueID: 935495461
+    locked: 0
+  - name: Foreground Objects
+    uniqueID: 376713139
+    locked: 0
+  - name: Foreground
+    uniqueID: 2752292253
     locked: 0
