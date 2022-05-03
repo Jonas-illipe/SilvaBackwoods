@@ -17,7 +17,7 @@ public class WolfEnemy : EnemyManager
         base.Update();
     }
 
-    void Charge()
+    void ChargeAttack()
     {
 
     }

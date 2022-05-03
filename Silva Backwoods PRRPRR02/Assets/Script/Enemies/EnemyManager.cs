@@ -4,26 +4,30 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+    [Header("Health")]
     public int currentHealth;
     public int maxHealth;
 
+    [Header("Attacks")]
     public int damage;
     public float attackSpeed;
+    public Transform meleePoint;
+    public float meleeRadius;
+    protected bool playerDetected;
 
+    [Header("Movement")]
     public float moveSpeed;
     public float stoppDistance;
 
+    [Header("Player")]
     protected Rigidbody2D rb;
-
     protected GameObject player;
+    public LayerMask playerLayer;
+
+    [Header("Locations")]
     protected Transform playerLocation;
     public float locateRadius;
     public Transform locatePoint;
-    public LayerMask playerLayer;
-    protected bool playerDetected;
-
-    public Transform meleePoint;
-    public float meleeRadius;
     
 
     // Start is called before the first frame update

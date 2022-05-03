@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    [Header("tjock")]
     public Transform groundCheckPoint;
     public float groundPointRadius;
     public LayerMask whatIsGround;
@@ -19,6 +20,9 @@ public class PlayerMovement : MonoBehaviour
     private bool canGrab, isGrabbing;
     public float grabRange;
     private float gravityStore;
+    public float timeBetGrab;
+    private float timeBetGrabCount;
+
     //public SpriteRenderer playerSR;
 
 
@@ -40,9 +44,14 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundPointRadius, whatIsGround);
 
         //Jump upwards
-        if (Input.GetButtonDown("Jump") && isGrounded || isGrabbing)
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
+        else if (Input.GetButtonDown("Jump") && isGrabbing)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            timeBetGrabCount = timeBetGrab;
         }
 
         //Flip the player
@@ -69,13 +78,20 @@ public class PlayerMovement : MonoBehaviour
         canGrab = Physics2D.OverlapCircle(wallGrabPoint.position, grabRange, whatIsWall);
 
         isGrabbing = false;
-        if(canGrab && !isGrounded)
+        if (timeBetGrabCount <= 0)
         {
-            if ((transform.localScale.x == 1f && Input.GetAxisRaw("Horizontal") > 0) || (transform.localScale.x == -1f && Input.GetAxisRaw("Horizontal") < 0))
+            if (canGrab && !isGrounded)
             {
-                isGrabbing = true;
-                //https://www.youtube.com/watch?v=uNJanDrjMgU
+                if ((transform.localScale.x == 1f && Input.GetAxisRaw("Horizontal") > 0) || (transform.localScale.x == -1f && Input.GetAxisRaw("Horizontal") < 0))
+                {
+                    isGrabbing = true;
+                    //https://www.youtube.com/watch?v=uNJanDrjMgU
+                }
             }
+        }
+        else
+        {
+            timeBetGrabCount -= Time.deltaTime;
         }
 
         if (isGrabbing)
