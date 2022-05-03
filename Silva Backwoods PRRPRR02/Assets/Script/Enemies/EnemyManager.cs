@@ -23,9 +23,9 @@ public class EnemyManager : MonoBehaviour
     protected Rigidbody2D rb;
     protected GameObject player;
     public LayerMask playerLayer;
-
-    [Header("Locations")]
     protected Transform playerLocation;
+
+    [Header("Tracking")]
     public float locateRadius;
     public Transform locatePoint;
     

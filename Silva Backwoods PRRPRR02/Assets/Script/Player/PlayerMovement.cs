@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Movement")]
     public float jumpForce;
     public float moveSpeed;
 
+    [Header("Player")]
     private Rigidbody2D rb;
 
-    [Header("tjock")]
+    [Header("Trackers")]
     public Transform groundCheckPoint;
     public float groundPointRadius;
     public LayerMask whatIsGround;
@@ -17,11 +19,13 @@ public class PlayerMovement : MonoBehaviour
 
     public LayerMask whatIsWall;
     public Transform wallGrabPoint;
-    private bool canGrab, isGrabbing;
+
+    [Header("Grab")]
     public float grabRange;
+    private bool canGrab, isGrabbing;
     private float gravityStore;
-    public float timeBetGrab;
-    private float timeBetGrabCount;
+    public float timeBetweenGrab;
+    private float timeBetweenGrabCount;
 
     //public SpriteRenderer playerSR;
 
@@ -51,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
         else if (Input.GetButtonDown("Jump") && isGrabbing)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            timeBetGrabCount = timeBetGrab;
+            timeBetweenGrabCount = timeBetweenGrab;
         }
 
         //Flip the player
@@ -78,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
         canGrab = Physics2D.OverlapCircle(wallGrabPoint.position, grabRange, whatIsWall);
 
         isGrabbing = false;
-        if (timeBetGrabCount <= 0)
+        if (timeBetweenGrabCount <= 0)
         {
             if (canGrab && !isGrounded)
             {
@@ -91,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            timeBetGrabCount -= Time.deltaTime;
+            timeBetweenGrabCount -= Time.deltaTime;
         }
 
         if (isGrabbing)
