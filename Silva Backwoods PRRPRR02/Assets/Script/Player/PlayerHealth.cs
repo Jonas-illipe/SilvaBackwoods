@@ -20,7 +20,7 @@ public class PlayerHealth : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void UpdateHealthSprites()
     {
        if (currentHealth > maxHealth)
        {
@@ -49,9 +49,17 @@ public class PlayerHealth : MonoBehaviour
        }
     }
 
+    public void Heal(int heal)
+    {
+        //if (ifall jonas äta mat få hp :D)
+        UpdateHealthSprites();
+    }
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+
+        UpdateHealthSprites();
 
         if (currentHealth <= 0)
         {

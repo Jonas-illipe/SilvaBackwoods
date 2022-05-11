@@ -10,10 +10,11 @@ public class EnemyManager : MonoBehaviour
 
     [Header("Attacks")]
     public int damage;
-    public float attackSpeed;
     public Transform meleePoint;
     public float meleeRadius;
     protected bool playerDetected;
+    public float baseTimeBtwAtk;
+    private float timeBtwAtk;
 
     [Header("Movement")]
     public float moveSpeed;
@@ -38,6 +39,7 @@ public class EnemyManager : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
+        timeBtwAtk = baseTimeBtwAtk;
     }
 
     // Update is called once per frame
@@ -56,10 +58,18 @@ public class EnemyManager : MonoBehaviour
             FollowPlayer();
         }
 
-        if (Physics2D.OverlapCircle(meleePoint.position, meleeRadius, playerLayer))
+        if (timeBtwAtk <= 0)
         {
-            //Debug.Log("Melee Detection Working");
-            MeleeAttack();
+            if (Physics2D.OverlapCircle(meleePoint.position, meleeRadius, playerLayer))
+            {
+                Debug.Log("Melee Detection Working");
+                timeBtwAtk = baseTimeBtwAtk;
+                MeleeAttack();
+            }
+        }
+        else
+        {
+            timeBtwAtk -= Time.deltaTime;
         }
     }
 
@@ -73,7 +83,12 @@ public class EnemyManager : MonoBehaviour
 
     void MeleeAttack()
     {
-        
+        Collider2D[] objectsToHit = Physics2D.OverlapCircleAll(meleePoint.position, meleeRadius, playerLayer);
+            
+        for (int i = 0; i < objectsToHit.Length; i++)
+        {
+            objectsToHit[i].GetComponent<PlayerHealth>().TakeDamage(damage);
+        }
     }
 
     public void TakeDamage(int damage)
