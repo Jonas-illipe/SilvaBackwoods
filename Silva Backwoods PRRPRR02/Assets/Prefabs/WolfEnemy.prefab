@@ -169,7 +169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 856450972899473978}
   m_Layer: 0
-  m_Name: WolfLocatePoint
+  m_Name: LocatePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,7 +199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 856450973710901457}
   m_Layer: 0
-  m_Name: WolfMeleePoint
+  m_Name: MeleePoint
   m_TagString: Untagged
   m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

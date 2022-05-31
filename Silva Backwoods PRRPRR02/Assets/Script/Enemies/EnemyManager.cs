@@ -79,6 +79,20 @@ public class EnemyManager : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, playerLocation.position, moveSpeed * Time.deltaTime);
         }
+
+        //Flip the Enemy
+        if (playerLocation.position.x < transform.position.x)
+        {
+            Vector3 scaler = transform.localScale;
+            scaler.x = -1f;
+            transform.localScale = scaler;
+        }
+        else if (playerLocation.position.x > transform.position.x)
+        {
+            Vector3 scaler = transform.localScale;
+            scaler.x = 1f;
+            transform.localScale = scaler;
+        }
     }
 
     void MeleeAttack()
