@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Tile
   - Enemy
+  - Items
+  - Stick
+  - Apple
   layers:
   - Default
   - TransparentFX
@@ -16,7 +19,7 @@ TagManager:
   - Wall
   - Enemy
   - Player
-  - 
+  - Items
   - 
   - 
   - 
@@ -60,6 +63,9 @@ TagManager:
     locked: 0
   - name: Tiles
     uniqueID: 1069020647
+    locked: 0
+  - name: Items
+    uniqueID: 155668749
     locked: 0
   - name: Creatures
     uniqueID: 935495461
