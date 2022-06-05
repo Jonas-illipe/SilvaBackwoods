@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
@@ -22,6 +23,7 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void UpdateHealthSprites()
     {
+        //Updates the health sprite depending on the amount of current hp.
        if (currentHealth > maxHealth)
        {
             currentHealth = maxHealth;
@@ -51,12 +53,15 @@ public class PlayerHealth : MonoBehaviour
 
     public void Heal(int heal)
     {
-        //if (ifall jonas äta mat få hp :D)
+        //If player eats apple heals 1 hp and then update healthsprites.
+        currentHealth += heal;
+
         UpdateHealthSprites();
     }
 
     public void TakeDamage(int damage)
     {
+        //If player takes damage -1 hp and then update healthsprites. If player took damage to 0 or below calls Die method.
         currentHealth -= damage;
 
         UpdateHealthSprites();
@@ -69,6 +74,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
+        //Destroys player object.
         Destroy(gameObject);
     }
 }

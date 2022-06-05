@@ -16,6 +16,7 @@ public class PlayerAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //sets time between attacks to base time between attacks.
         timeBtwAtk = baseTimeBtwAtk;
 
     }
@@ -23,6 +24,7 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Attacks if attack cooldown is done if not count down the cooldown.
         if (timeBtwAtk <= 0)
         {
             if (Input.GetKey(KeyCode.Mouse0))
@@ -43,6 +45,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
+        //Draws red outlines for the OverlapCircles.
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(atkPoint.position, atkRange);
     }

@@ -45,6 +45,7 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
+        //Caps current health below maxHealth.
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
@@ -52,12 +53,14 @@ public class EnemyManager : MonoBehaviour
 
         playerDetected = Physics2D.OverlapCircle(locatePoint.position, locateRadius, playerLayer);
         
+        //If player is inside the radius calls follow method.
         if (playerDetected == true)
         {
             //Debug.Log("PlayerDetection Is True");
             FollowPlayer();
         }
 
+        //If time between attack is 0 or below and player is inside radius turn on attack cooldown and attack. Else keep on counting the countdown.
         if (timeBtwAtk <= 0)
         {
             if (Physics2D.OverlapCircle(meleePoint.position, meleeRadius, playerLayer))
@@ -75,12 +78,13 @@ public class EnemyManager : MonoBehaviour
 
     void FollowPlayer()
     {
+        //Follows the player inside a radius.
         if (Vector2.Distance(transform.position, playerLocation.position) > stoppDistance)
         {
             transform.position = Vector2.MoveTowards(transform.position, playerLocation.position, moveSpeed * Time.deltaTime);
         }
 
-        //Flip the Enemy
+        //Flip the Enemy towards the player.
         if (playerLocation.position.x < transform.position.x)
         {
             Vector3 scaler = transform.localScale;
@@ -97,6 +101,7 @@ public class EnemyManager : MonoBehaviour
 
     void MeleeAttack()
     {
+        //When player is inside an area attack and call damage method on player script.
         Collider2D[] objectsToHit = Physics2D.OverlapCircleAll(meleePoint.position, meleeRadius, playerLayer);
             
         for (int i = 0; i < objectsToHit.Length; i++)
@@ -107,6 +112,7 @@ public class EnemyManager : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        //If enemy takes damage -1 hp. If Enemy took damage to 0 or below, calls Die method.
         currentHealth -= damage;
 
         if (currentHealth <= 0)
@@ -117,11 +123,13 @@ public class EnemyManager : MonoBehaviour
 
     void Die()
     {
+        //Removes its own object.
         Destroy(gameObject);
     }
 
     private void OnDrawGizmosSelected()
     {
+        //Draws red outlines for the OverlapCircles.
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(locatePoint.position, locateRadius);
         Gizmos.DrawWireSphere(meleePoint.position, meleeRadius);

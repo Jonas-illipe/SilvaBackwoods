@@ -29,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
 
     //public SpriteRenderer playerSR;
 
-
     public Animator anim;
 
     private void Start()
@@ -89,7 +88,6 @@ public class PlayerMovement : MonoBehaviour
                 if ((transform.localScale.x == 1f && Input.GetAxisRaw("Horizontal") > 0) || (transform.localScale.x == -1f && Input.GetAxisRaw("Horizontal") < 0))
                 {
                     isGrabbing = true;
-                    //https://www.youtube.com/watch?v=uNJanDrjMgU
                 }
             }
         }
@@ -111,6 +109,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
+        //Draws red outlines for the OverlapCircles.
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(wallGrabPoint.position, grabRange);
         Gizmos.DrawWireSphere(groundCheckPoint.position, groundPointRadius);
