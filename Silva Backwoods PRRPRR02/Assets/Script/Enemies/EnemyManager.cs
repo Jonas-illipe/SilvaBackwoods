@@ -65,7 +65,7 @@ public class EnemyManager : MonoBehaviour
         {
             if (Physics2D.OverlapCircle(meleePoint.position, meleeRadius, playerLayer))
             {
-                Debug.Log("Melee Detection Working");
+                //Debug.Log("Melee Detection Working");
                 timeBtwAtk = baseTimeBtwAtk;
                 MeleeAttack();
             }
